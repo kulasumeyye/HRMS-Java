@@ -4,10 +4,10 @@ import java.util.List;
 
 import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.core.utilities.results.Result;
-import kodlamaio.hrms.entities.concretes.User;
+import kodlamaio.hrms.entities.concretes.Skill;
 
-public interface UserService {
-    DataResult<List<User>> getAll();
-   
-    Result add(User user);
+public interface SkillService {
+	 Result add(Skill skill);
+	 DataResult<List<Skill>> getAll();
+
 }

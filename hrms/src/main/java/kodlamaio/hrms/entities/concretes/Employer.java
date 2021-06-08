@@ -1,23 +1,52 @@
 package kodlamaio.hrms.entities.concretes;
 
+
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+import java.util.List;
+
 
 @Entity
-@Table(name="employers")
+
+@Table(name = "employers")
 public class Employer extends User {
-	public int getId() {
-		return id;
+    @Column(name = "company_name")
+    @NotBlank(message = "companyName boş olamaz!")
+    @NotNull(message = "companyName boş olamaz!")
+    private String companyName;
+
+    @Column(name = "web_address")
+    @NotBlank(message = "webAddress boş olamaz!")
+    @NotNull(message = "webAddress boş olamaz!")
+    private String webAddress;
+
+    @Column(name = "phone_number")
+    @NotBlank(message = "phoneNumber boş olamaz!")
+    @NotNull(message = "phoneNumber boş olamaz!")
+    private String phoneNumber;
+
+    @OneToMany(mappedBy = "employer")
+    private List<JobAdvertisement> jobAdvertisements;
+
+	public Employer() {
+		super();
 	}
 
-	public void setId(int id) {
-		this.id = id;
+	public Employer(
+			@NotBlank(message = "companyName boş olamaz!") @NotNull(message = "companyName boş olamaz!") String companyName,
+			@NotBlank(message = "webAddress boş olamaz!") @NotNull(message = "webAddress boş olamaz!") String webAddress,
+			@NotBlank(message = "phoneNumber boş olamaz!") @NotNull(message = "phoneNumber boş olamaz!") String phoneNumber,
+			List<JobAdvertisement> jobAdvertisements) {
+		super();
+		this.companyName = companyName;
+		this.webAddress = webAddress;
+		this.phoneNumber = phoneNumber;
+		this.jobAdvertisements = jobAdvertisements;
 	}
 
 	public String getCompanyName() {
@@ -44,37 +73,11 @@ public class Employer extends User {
 		this.phoneNumber = phoneNumber;
 	}
 
-	public boolean isActivated() {
-		return isActivated;
+	public List<JobAdvertisement> getJobAdvertisements() {
+		return jobAdvertisements;
 	}
 
-	public void setActivated(boolean isActivated) {
-		this.isActivated = isActivated;
+	public void setJobAdvertisements(List<JobAdvertisement> jobAdvertisements) {
+		this.jobAdvertisements = jobAdvertisements;
 	}
-
-	@Id
-	@GeneratedValue
-	@Column(name="id")
-	private int id;
-	
-	@Column(name = "company_name")
-	@NotBlank
-	@NotNull
-	private String companyName;
-
-	@Column(name = "web_address")
-	@NotBlank
-	@NotNull
-	private String webAddress;
-
-	@Column(name = "phone_number")
-	@NotBlank
-	@NotNull
-	//@Pattern(regexp = "^(05)([0-9]{2})\\s?([0-9]{3})\\s?([0-9]{2})\\s?([0-9]{2})$", message = "Telefon formatı hatalı...")
-	@Size(min = 11, max = 11, message = "Telefon numarası 11 haneli olmalı")
-	private String phoneNumber;
-
-	@Column(name = "is_activated")
-	private boolean isActivated ;
-
 }

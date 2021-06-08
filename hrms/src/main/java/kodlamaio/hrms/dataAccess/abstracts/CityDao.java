@@ -1,13 +1,11 @@
 package kodlamaio.hrms.dataAccess.abstracts;
 
-import java.util.List;
-
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import kodlamaio.hrms.entities.concretes.User;
+import kodlamaio.hrms.entities.concretes.City;
 
 @Repository
-public interface UserDao extends JpaRepository<User,Integer> {
-	 List<User> getByEmail(String email);
+public interface CityDao extends JpaRepository<City,Integer> {
+
 }

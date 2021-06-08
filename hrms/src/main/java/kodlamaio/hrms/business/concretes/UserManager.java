@@ -37,4 +37,8 @@ public class UserManager implements UserService {
 		return new SuccessResult("Kullanıcı eklendi");
 	}
 
+
+
+
+
 }

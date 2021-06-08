@@ -5,9 +5,10 @@ import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import kodlamaio.hrms.entities.concretes.User;
+import kodlamaio.hrms.entities.concretes.Resume;
 
 @Repository
-public interface UserDao extends JpaRepository<User,Integer> {
-	 List<User> getByEmail(String email);
+public interface ResumeDao extends JpaRepository<Resume,Integer> {
+    List<Resume> getByJobSeeker_Id(int id);
 }
+
